@@ -7,3 +7,133 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Persona {  
+  id        Int    @id @default(cuid())  
+  tipoIdentificacion   String?   // tipo_identificacion  
+  identificacion       String?   // identificacion  
+  nombres              String?   // nombres  
+  apellidos            String?   // apellidos  
+  email                String?   // email  
+  direccion            String?   // direccion  
+  telefono            String?   // telefono  
+  rh                   String?   // rh  
+  tipoPersona          String?   // tipo_persona  
+  recibeVisitas        String?   // recibe_visitas  
+  nombreEps            String?   // nombre_eps  
+  nombreArl            String?   // nombre_arl  
+  accesoRestringido   String?   // acceso_restringido  
+  observacion          String?   // observacion  
+  consumoCasino       String?   // consumo_casino  
+  tarjetaAcceso       String?   // tarjeta_acceso  
+  codigoNomina         String?   // codigo_nomina  
+  estado               String   @default: "S" // estado  
+  idDependencia        Int?      // id_dependencia  
+  idEmpresaSeguridadSocial Int? // id_empresa_seguridad_social  
+  idGrupoHorario       Int?      // id_grupo_horario  
+  idTurno              Int?      // id_turno  
+  idDepartamento        Int?      // id_departamento  
+  idArea               Int?      // id_area  
+  idCiudad             Int?      // id_ciudad  
+  idCentroCosto        Int?      // id_centro_costo  
+  idCargo              Int?      // id_cargo  
+  idEmpresaTrabaja     Int?      // id_empresa_trabaja  
+  idGrupoConsumo       Int?      // id_grupo_consumo  
+  cantidadConsumo      Int?      // cantidad_consumo  
+  consumoHoteleria     String?   // consumo_hotelerias  
+  fechaInicioValida    DateTime? // fecha_inicio_valida  
+  fechaFinValida       DateTime? // fecha_fin_valida  
+  generaTiempoAdicional String? // genera_tiempo_adicional   
+}  
+
+model TurnoTiempo {  
+  id                  Int    @id @default(cuid())  
+  codigo              String  // codigo  
+  descripcion        String  // descripcion  
+  tipoTurno          String  // tipo_turno  
+  horaInicio         String  // hora_inicio  
+  horaFin            String  // hora_fin  
+  teorico            String @default: "08:00" // teorico  
+  limiteTurno        String @default: "16:00" // limite_turno  
+  proximoPeriodo     Boolean @default: false // proximo_periodo  
+  aproximacionAntesEntrada Int @default: 70 // aproximacion_antes_entrada  
+  aproximacionDespuesEntrada Int @default: 80 // aproximacion_despues_entrada  
+  aproximacionAntesSalida Int @default: 90 // aproximacion_antes_salida  
+  aproximacionDespuesSalida Int @default: 100 // aproximacion_despues_salida  
+  aprobarExtras      Boolean @default: false // aprobar_extras  
+  generaExtrasEntrada Boolean @default: false // genera_extras_entrada  
+  graciaAntesEntrada Int @default: 30 // gracia_antes_entrada  
+  graciaDespuesEntrada Int @default: 40 // gracia_despues_entrada  
+  generaExtrasSalida  Boolean @default: false // genera_extras_salida  
+  graciaAntesSalida  Int @default: 50 // gracia_antes_salida  
+  graciaDespuesSalida Int @default: 60 // gracia_despues_salida  
+  horaInicioDiurno   String @default: "06:00" // hora_inicio_diurno  
+  horaInicioNocturno  String @default: "21:00" // hora_inicio_nocturno  
+  redondeoEntrada    String // redondeo_entrada  
+  redondeoSalida     String // redondeo_salida  
+  redondeoBreakEntrada String? // redondeo_break_entrada  
+  redondeoBreakSalida String? // redondeo_break_salida  
+  descuentaBreak     Boolean @default: false // descuenta_break  
+  descuentaBreakMarcado Boolean @default: false // descuenta_break_marcado  
+  manejaEquivalenciaConceptos Boolean @default: false // maneja_equivalencia_conceptos  
+  estado             Boolean // estado  
+}  
+
+model Marcacion {  
+  id               Int      @id @default(cuid())  
+  idPersona        Int?     // id_persona  
+  fechaMarcacion   DateTime? // fecha_marcacion  
+  estadoMarcacion String?  // estado_marcacion  
+  nombreDispositivo String? // nombre_dispositivo  
+  observacion      String? // observacion  
+  observacionPersonal String? // observacion_personal  
+  estado           Boolean @default: true // estado  
+  idTurno          Int?     // id_turno  
+  pais            String?  // pais  
+  ciudad          String?  // ciudad  
+  direccion       String?  // direccion  
+  latitud         String?  // latitud  
+  longitud        String?  // longitud  
+  idFotoRemota    String?  // id_foto_remota  
+}  
+
+model Imagen {  
+  id         Int      @id @default(cuid())  
+  idPersona Int?     // id_persona  
+  idVehiculo Int?    // id_vehiculo  
+  tipoImagen String? // tipo_imagen  
+  numeroImagen Int?  // numero_imagen  
+  imagen     String // imagen  
+  estado     String? // estado  
+
+}  
+
+model Jornada {  
+  id            Int      @id @default(cuid())  
+  idPersona    Int?     // id_persona  
+  idTurno      Int?     // id_turno  
+  fechaInicio DateTime? // fecha_inicio  
+  horaInicioReal String? // hora_inicio_real  
+  horaInicioCalculo String? // hora_inicio_calculo  
+  fechaFin     DateTime? // fecha_fin  
+  horaFinReal  String? // hora_fin_real  
+  horaFinCalculo String? // hora_fin_calculo  
+}  
+
+model RegistroTiempo {  
+  id           Int      @id @default(cuid())  
+  codigo       String? // codigo  
+  fecha        Date?   // fecha  
+  hora         Time?   // hora  
+  campo1       String? // campo1  
+  campo2       String? // campo2  
+  campo3       String? // campo3  
+  campo4       String? // campo4  
+  funcion      String? // funcion  
+  dispositivo String? // dispositivo  
+  pais        String? // pais  
+  ciudad      String? // ciudad  
+  direccion   String? // direccion  
+  latitud     String? // latitud  
+  longitud    String? // longitud  
+  idFotoRemota String? // id_foto_remota  
+}  
