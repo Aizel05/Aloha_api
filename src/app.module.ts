@@ -14,6 +14,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RefreshToken } from './tokens/refresh-token.entity';
 import { AccessToken } from './tokens/access-token.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import * as crypto from 'crypto';
+
 
 @Module({
   imports: [
