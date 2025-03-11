@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Persona {  
-  id        Int    @id @default(cuid())  
+  id        Int      @id
   tipoIdentificacion   String?   // tipo_identificacion  
   identificacion       String?   // identificacion  
   nombres              String?   // nombres  
@@ -26,7 +26,7 @@ model Persona {
   consumoCasino       String?   // consumo_casino  
   tarjetaAcceso       String?   // tarjeta_acceso  
   codigoNomina         String?   // codigo_nomina  
-  estado               String   @default: "S" // estado  
+  estado               String   
   idDependencia        Int?      // id_dependencia  
   idEmpresaSeguridadSocial Int? // id_empresa_seguridad_social  
   idGrupoHorario       Int?      // id_grupo_horario  
@@ -46,47 +46,47 @@ model Persona {
 }  
 
 model TurnoTiempo {  
-  id                  Int    @id @default(cuid())  
+  id                  Int     @id 
   codigo              String  // codigo  
   descripcion        String  // descripcion  
   tipoTurno          String  // tipo_turno  
   horaInicio         String  // hora_inicio  
   horaFin            String  // hora_fin  
-  teorico            String @default: "08:00" // teorico  
-  limiteTurno        String @default: "16:00" // limite_turno  
-  proximoPeriodo     Boolean @default: false // proximo_periodo  
-  aproximacionAntesEntrada Int @default: 70 // aproximacion_antes_entrada  
-  aproximacionDespuesEntrada Int @default: 80 // aproximacion_despues_entrada  
-  aproximacionAntesSalida Int @default: 90 // aproximacion_antes_salida  
-  aproximacionDespuesSalida Int @default: 100 // aproximacion_despues_salida  
-  aprobarExtras      Boolean @default: false // aprobar_extras  
-  generaExtrasEntrada Boolean @default: false // genera_extras_entrada  
-  graciaAntesEntrada Int @default: 30 // gracia_antes_entrada  
-  graciaDespuesEntrada Int @default: 40 // gracia_despues_entrada  
-  generaExtrasSalida  Boolean @default: false // genera_extras_salida  
-  graciaAntesSalida  Int @default: 50 // gracia_antes_salida  
-  graciaDespuesSalida Int @default: 60 // gracia_despues_salida  
-  horaInicioDiurno   String @default: "06:00" // hora_inicio_diurno  
-  horaInicioNocturno  String @default: "21:00" // hora_inicio_nocturno  
+  teorico            String 
+  limiteTurno        String 
+  proximoPeriodo     Boolean 
+  aproximacionAntesEntrada Int
+  aproximacionDespuesEntrada Int
+  aproximacionAntesSalida Int 
+  aproximacionDespuesSalida Int
+  aprobarExtras      Boolean 
+  generaExtrasEntrada Boolean 
+  graciaAntesEntrada Int
+  graciaDespuesEntrada Int 
+  generaExtrasSalida  Boolean
+  graciaAntesSalida  Int
+  graciaDespuesSalida Int 
+  horaInicioDiurno   String 
+  horaInicioNocturno  String
   redondeoEntrada    String // redondeo_entrada  
   redondeoSalida     String // redondeo_salida  
   redondeoBreakEntrada String? // redondeo_break_entrada  
   redondeoBreakSalida String? // redondeo_break_salida  
-  descuentaBreak     Boolean @default: false // descuenta_break  
-  descuentaBreakMarcado Boolean @default: false // descuenta_break_marcado  
-  manejaEquivalenciaConceptos Boolean @default: false // maneja_equivalencia_conceptos  
+  descuentaBreak     Boolean
+  descuentaBreakMarcado Boolean 
+  manejaEquivalenciaConceptos Boolean 
   estado             Boolean // estado  
 }  
 
 model Marcacion {  
-  id               Int      @id @default(cuid())  
+  id               Int      @id  
   idPersona        Int?     // id_persona  
   fechaMarcacion   DateTime? // fecha_marcacion  
   estadoMarcacion String?  // estado_marcacion  
   nombreDispositivo String? // nombre_dispositivo  
   observacion      String? // observacion  
   observacionPersonal String? // observacion_personal  
-  estado           Boolean @default: true // estado  
+  estado           Boolean 
   idTurno          Int?     // id_turno  
   pais            String?  // pais  
   ciudad          String?  // ciudad  
@@ -97,7 +97,7 @@ model Marcacion {
 }  
 
 model Imagen {  
-  id         Int      @id @default(cuid())  
+  id         Int      @id  
   idPersona Int?     // id_persona  
   idVehiculo Int?    // id_vehiculo  
   tipoImagen String? // tipo_imagen  
@@ -108,7 +108,7 @@ model Imagen {
 }  
 
 model Jornada {  
-  id            Int      @id @default(cuid())  
+  id            Int      @id  
   idPersona    Int?     // id_persona  
   idTurno      Int?     // id_turno  
   fechaInicio DateTime? // fecha_inicio  
@@ -120,10 +120,10 @@ model Jornada {
 }  
 
 model RegistroTiempo {  
-  id           Int      @id @default(cuid())  
+  id           Int       @id 
   codigo       String? // codigo  
-  fecha        Date?   // fecha  
-  hora         Time?   // hora  
+  fecha        DateTime?   // fecha  
+  hora         String?   // hora  
   campo1       String? // campo1  
   campo2       String? // campo2  
   campo3       String? // campo3  
