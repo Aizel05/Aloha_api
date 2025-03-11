@@ -6,17 +6,10 @@ import { PrismaService } from '../prisma/prisma.service';
 import { PrismaModule } from '../prisma/prisma.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
+
 
 @Module({
-  imports: [AuthModule, PrismaModule,
-   MulterModule.register({
-      dest: './uploads',
-    }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'), 
-    }),
-  ],
+  imports: [AuthModule, PrismaModule],
   controllers: [ImagenController],
   providers: [ImagenService, PrismaService]
 })
