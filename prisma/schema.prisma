@@ -7,133 +7,161 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Persona {  
-  id        Int      @id
-  tipo_identificacion   String?   // tipo_identificacion  
-  identificacion       String?   // identificacion  
-  nombres              String?   // nombres  
-  apellidos            String?   // apellidos  
-  email                String?   // email  
-  direccion            String?   // direccion  
-  telefono            String?   // telefono  
-  rh                   String?   // rh  
-  tipo_persona          String?   // tipo_persona  
-  recibe_visitas        String?   // recibe_visitas  
-  nombreEps            String?   // nombre_eps  
-  nombreArl            String?   // nombre_arl  
-  acceso_restringido   String?   // acceso_restringido  
-  observacion          String?   // observacion  
-  consumoCasino       String?   // consumo_casino  
-  tarjetaAcceso       String?   // tarjeta_acceso  
-  codigoNomina         String?   // codigo_nomina  
-  estado               String   
-  idDependencia        Int?      // id_dependencia  
-  idEmpresaSeguridadSocial Int? // id_empresa_seguridad_social  
-  idGrupoHorario       Int?      // id_grupo_horario  
-  idTurno              Int?      // id_turno  
-  idDepartamento        Int?      // id_departamento  
-  idArea               Int?      // id_area  
-  idCiudad             Int?      // id_ciudad  
-  idCentroCosto        Int?      // id_centro_costo  
-  idCargo              Int?      // id_cargo  
-  idEmpresaTrabaja     Int?      // id_empresa_trabaja  
-  idGrupoConsumo       Int?      // id_grupo_consumo  
-  cantidadConsumo      Int?      // cantidad_consumo  
-  consumoHoteleria     String?   // consumo_hotelerias  
-  fechaInicioValida    DateTime? // fecha_inicio_valida  
-  fechaFinValida       DateTime? // fecha_fin_valida  
-  genera_tiempo_adicional String? // genera_tiempo_adicional   
-}  
+model TurnoTiempo {
+  id                          Int     @id
+  codigo                      String
+  descripcion                 String
+  tipoTurno                   String
+  horaInicio                  String
+  horaFin                     String
+  teorico                     String
+  limiteTurno                 String
+  proximoPeriodo              Boolean
+  aproximacionAntesEntrada    Int
+  aproximacionDespuesEntrada  Int
+  aproximacionAntesSalida     Int
+  aproximacionDespuesSalida   Int
+  aprobarExtras               Boolean
+  generaExtrasEntrada         Boolean
+  graciaAntesEntrada          Int
+  graciaDespuesEntrada        Int
+  generaExtrasSalida          Boolean
+  graciaAntesSalida           Int
+  graciaDespuesSalida         Int
+  horaInicioDiurno            String
+  horaInicioNocturno          String
+  redondeoEntrada             String
+  redondeoSalida              String
+  redondeoBreakEntrada        String?
+  redondeoBreakSalida         String?
+  descuentaBreak              Boolean
+  descuentaBreakMarcado       Boolean
+  manejaEquivalenciaConceptos Boolean
+  estado                      Boolean
+}
 
-model TurnoTiempo {  
-  id                  Int     @id 
-  codigo              String  // codigo  
-  descripcion        String  // descripcion  
-  tipoTurno          String  // tipo_turno  
-  horaInicio         String  // hora_inicio  
-  horaFin            String  // hora_fin  
-  teorico            String 
-  limiteTurno        String 
-  proximoPeriodo     Boolean 
-  aproximacionAntesEntrada Int
-  aproximacionDespuesEntrada Int
-  aproximacionAntesSalida Int 
-  aproximacionDespuesSalida Int
-  aprobarExtras      Boolean 
-  generaExtrasEntrada Boolean 
-  graciaAntesEntrada Int
-  graciaDespuesEntrada Int 
-  generaExtrasSalida  Boolean
-  graciaAntesSalida  Int
-  graciaDespuesSalida Int 
-  horaInicioDiurno   String 
-  horaInicioNocturno  String
-  redondeoEntrada    String // redondeo_entrada  
-  redondeoSalida     String // redondeo_salida  
-  redondeoBreakEntrada String? // redondeo_break_entrada  
-  redondeoBreakSalida String? // redondeo_break_salida  
-  descuentaBreak     Boolean
-  descuentaBreakMarcado Boolean 
-  manejaEquivalenciaConceptos Boolean 
-  estado             Boolean // estado  
-}  
+model Imagen {
+  id            Int     @id
+  imagen        String
+  estado        String?
+  id_persona    Int?
+  id_vehiculo   Int?
+  numero_imagen Int?
+  tipo_imagen   String?
+}
 
-model Marcacion {  
-  id               Int      @id  
-  id_persona        Int?     // id_persona  
-  fecha_marcacion   DateTime? // fecha_marcacion  
-  estado_marcacion String?  // estado_marcacion  
-  nombre_dispositivo String? // nombre_dispositivo  
-  observacion      String? // observacion  
-  observacionPersonal String? // observacion_personal  
-  estado           Boolean 
-  id_turno          Int?     // id_turno  
-  pais            String?  // pais  
-  ciudad          String?  // ciudad  
-  direccion       String?  // direccion  
-  Latitud         String?  // latitud  
-  Longitud        String?  // longitud  
-  Id_foto_remota    String?  // id_foto_remota  
-}  
+model Jornada {
+  id                Int       @id
+  fechaInicio       DateTime?
+  horaInicioReal    String?
+  horaInicioCalculo String?
+  fechaFin          DateTime?
+  horaFinReal       String?
+  horaFinCalculo    String?
+  id_persona        Int?
+  id_turno          Int?
+}
 
-model Imagen {  
-  id         Int      @id  
-  id_persona Int?     // id_persona  
-  id_vehiculo Int?    // id_vehiculo  
-  tipo_imagen String? // tipo_imagen  
-  numero_imagen Int?  // numero_imagen  
-  imagen     String // imagen  
-  estado     String? // estado  
+model RegistroTiempo {
+  id             Int       @id
+  codigo         String?
+  fecha          DateTime?
+  hora           String?
+  campo1         String?
+  campo2         String?
+  campo3         String?
+  campo4         String?
+  funcion        String?
+  dispositivo    String?
+  pais           String?
+  ciudad         String?
+  direccion      String?
+  latitud        String?
+  longitud       String?
+  Id_foto_remota String?
+}
 
-}  
+model access_token {
+  id    Int    @id @default(autoincrement())
+  token String @unique(map: "IDX_70ba8f6af34bc924fc9e12adb8") @db.VarChar(255)
+}
 
-model Jornada {  
-  id            Int      @id  
-  id_persona    Int?     // id_persona  
-  id_turno      Int?     // id_turno  
-  fechaInicio DateTime? // fecha_inicio  
-  horaInicioReal String? // hora_inicio_real  
-  horaInicioCalculo String? // hora_inicio_calculo  
-  fechaFin     DateTime? // fecha_fin  
-  horaFinReal  String? // hora_fin_real  
-  horaFinCalculo String? // hora_fin_calculo  
-}  
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model marcacion {
+  id                   Int       @id @default(autoincrement()) @db.UnsignedInt
+  id_persona           Int?
+  fecha_marcacion      DateTime? @db.DateTime(0)
+  estado_marcacion     String?   @db.VarChar(255)
+  nombre_dispositivo   String?   @db.VarChar(255)
+  observacion          String?   @db.LongText
+  observacion_personal String?   @db.LongText
+  estado               Boolean?  @default(true)
+  id_turno             Int?
+  Pais                 String?   @db.VarChar(20)
+  Ciudad               String?   @db.VarChar(20)
+  Direccion            String?   @db.LongText
+  Latitud              String?   @db.LongText
+  Longitud             String?   @db.LongText
+  Id_foto_remota       String?   @db.VarChar(200)
+  persona              persona?  @relation(fields: [id_persona], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "marcacion_fk")
 
-model RegistroTiempo {  
-  id           Int       @id 
-  codigo       String? // codigo  
-  fecha        DateTime?   // fecha  
-  hora         String?   // hora  
-  campo1       String? // campo1  
-  campo2       String? // campo2  
-  campo3       String? // campo3  
-  campo4       String? // campo4  
-  funcion      String? // funcion  
-  dispositivo String? // dispositivo  
-  pais        String? // pais  
-  ciudad      String? // ciudad  
-  direccion   String? // direccion  
-  latitud     String? // latitud  
-  longitud    String? // longitud  
-  Id_foto_remota String? // id_foto_remota  
-}  
+  @@unique([id_persona, fecha_marcacion], map: "CK_marcacion_unique")
+  @@index([id_persona], map: "id_persona")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model persona {
+  id                          Int         @id @default(autoincrement())
+  tipo_identificacion         String?     @db.VarChar(50)
+  identificacion              String?     @db.VarChar(50)
+  nombres                     String?     @db.VarChar(255)
+  apellidos                   String?     @db.VarChar(255)
+  email                       String?     @db.VarChar(255)
+  direccion                   String?     @db.VarChar(255)
+  telefono                    String?     @db.VarChar(100)
+  rh                          String?     @db.VarChar(5)
+  tipo_persona                String?     @db.VarChar(50)
+  recibe_visitas              String?     @db.VarChar(5)
+  nombre_eps                  String?     @db.VarChar(100)
+  nombre_arl                  String?     @db.VarChar(100)
+  acceso_restringido          String?     @db.VarChar(5)
+  observacion                 String?     @db.LongText
+  consumo_casino              String?     @db.VarChar(5)
+  tarjeta_acceso              String?     @db.VarChar(20)
+  codigo_nomina               String?     @db.VarChar(255)
+  estado                      String?     @default("S") @db.VarChar(2)
+  id_dependencia              Int?
+  id_empresa_seguridad_social Int?
+  id_grupo_horario            Int?
+  id_turno                    Int?
+  id_departamento             Int?
+  id_area                     Int?
+  id_ciudad                   Int?
+  id_centro_costo             Int?
+  id_cargo                    Int?
+  id_empresa_trabaja          Int?
+  id_grupo_consumo            Int?
+  cantidad_consumo            Int?
+  consumo_hoteleria           String?     @db.VarChar(10)
+  consumo_hotelerias          String?     @default("N") @db.VarChar(10)
+  fecha_inicio_valida         DateTime?   @db.DateTime(0)
+  fecha_fin_valida            DateTime?   @db.DateTime(0)
+  genera_tiempo_adicional     String?     @db.VarChar(2)
+  marcacion                   marcacion[]
+
+  @@index([id_area], map: "id_area")
+  @@index([id_cargo], map: "id_cargo")
+  @@index([id_centro_costo], map: "id_centro_costo")
+  @@index([id_ciudad], map: "id_ciudad")
+  @@index([id_departamento], map: "id_departamento")
+  @@index([id_dependencia], map: "id_dependencia")
+  @@index([id_empresa_seguridad_social], map: "id_empresa_seguridad_social")
+  @@index([id_empresa_trabaja], map: "id_empresa_trabaja")
+  @@index([id_grupo_consumo], map: "id_grupo_consumo")
+  @@index([id_grupo_horario], map: "id_grupo_horario")
+}
+
+model refresh_token {
+  id    Int    @id @default(autoincrement())
+  token String @unique(map: "IDX_c31d0a2f38e6e99110df62ab0a") @db.VarChar(255)
+}
