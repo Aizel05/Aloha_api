@@ -30,7 +30,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
         entities: [RefreshToken, AccessToken],
-        synchronize: false,
+        synchronize: true,
       }),
       inject: [ConfigService],
     }), AuthModule, PersonaModule, TurnoTiempoModule, MarcacionModule, ImagenModule, JornadaModule, RegistroTiempoModule],
